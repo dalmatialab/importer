@@ -1,0 +1,23 @@
+name: Push README to DockerHub
+
+on:
+  push:
+    paths:
+      - 'README.md'
+
+env:
+  IMAGE_NAME: ${{ github.event.repository.name }}
+  
+jobs:
+  push_to_registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v2
+        continue-on-error: true
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          repository: ${{ secrets.DOCKER_HUB }}/${{ env.IMAGE_NAME }}

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: importer-deployment
+  labels:
+    app: importer
+spec:
+  selector:
+    matchLabels:
+      app: importer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: importer
+    spec:
+      containers:
+      - name: importer
+        image: {{ .Values.image }}:{{ .Values.imageTag }}
+        env:
+        - name: broker
+          value: "{{ .Values.env.broker }}"
+        - name: topic
+          value: "{{ .Values.env.topic }}"
+        - name: topicAdmin
+          value: "{{ .Values.env.topicAdmin }}"
+        - name: username
+          value: "{{ .Values.env.username }}"
+        - name: password
+          value: "{{ .Values.env.password }}"
+        - name: instanceID
+          value: "{{ .Values.env.instanceID }}"
+        - name: zookeepers
+          value: "{{ .Values.env.zookeepers }}"
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+      restartPolicy: {{ .Values.restartPolicy }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+        importer: {{ .Values.nodeSelector | quote }}
+      {{- end }}
