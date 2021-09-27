@@ -54,7 +54,7 @@ This is *optional* variable. It specifes timezone. Default value is `Europe/Zagr
 
 ## NOTE
 
-To create schema publish to mqtt `topicAdmin` or your costum topic following payload:
+To create schema publish to mqtt `topicAdmin` following payload:
 
     '{"action":"create","catalog":"geomesa.catalog","schemaname":"schema1","schema":"device_id:String:index=true,*geometry:Point:srid=4326","user-data":{"geomesa.z3.interval":"week","geomesa.xz.precision":"12"}}'
 
@@ -66,7 +66,7 @@ where:
  - `user-data` - defines **non-required** costum user-data supported by Geomesa. Check [Geomesa documentation](https://www.geomesa.org/documentation/stable/user/datastores/index_config.html) to learn what user-data is available. If not passing user-data remove user-data section from payload.
 
 
-To delete schema publish to mqtt `topicAdmin` or your costum topic following payload:
+To delete schema publish to mqtt `topicAdmin` following payload:
 
     '{"action":"delete","catalog":"geomesa.catalog","schemaname":"schema1"}'
 
