@@ -83,7 +83,7 @@ where:
  - `action` - defines schema action (`create` for create, `list` for list, `delete` for delete)
  - `catalog` - defines catalog name. It must be defined in form namespace.catalog
 
-To ingest data check costum python [script](./ingest.py) inside this repo. Function arguments are:
+To ingest data check costum python [script](./ingest.py) inside this repo. We tested it at python version 3.5.9. Function arguments are:
  - `data` - csv file used for ingesting
  - `indices` - csv file fields used to create index to prevent ingesting same data multiple times. If None, all fields are used.
  - `catalog` - catalog name to ingest data
